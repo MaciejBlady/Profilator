@@ -6,15 +6,14 @@ using System.Text;
 
 namespace Profilator
 {
-    //generyczny? - typ danych 
-    public class ProfilatorDataRecord : IEnumerable<KeyValuePair<string, double>>
+    public class ProfilatorDataRecord : IEnumerable<KeyValuePair<string, string>>
     {
         private DateTime _created;
-        private Dictionary<string, double> _records = new Dictionary<string, double>();
+        private Dictionary<string, string> _records = new Dictionary<string, string>();
 
         public ProfilatorDataRecord()
         {
-
+            _created = DateTime.Now;
         }
 
         public void WriteToFile(string path)
@@ -22,7 +21,7 @@ namespace Profilator
 
         }
 
-        public void AddData(string label, double value)
+        public void AddData(string label, string value)
         {
             _records.Add(label, value);
         }
@@ -42,7 +41,7 @@ namespace Profilator
             return this.GetEnumerator();
         }
 
-        public IEnumerator<KeyValuePair<string, double>> GetEnumerator()
+        public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
             return _records.GetEnumerator();
         }
