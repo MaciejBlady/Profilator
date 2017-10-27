@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using UnityEngine;
-using System.Text;
 
 namespace Profilator
 {
@@ -30,7 +27,7 @@ namespace Profilator
             ProfilatorDataRecord data = new ProfilatorDataRecord();           
             for (int i = 0; i < _processorCount; i++)
             {
-                data.AddData(string.Format("CPU {0}", i), _counters[i].NextValue());
+                data.AddData(string.Format("CPU {0}", i), _counters[i].NextValue().ToString());
             }
             return data;
         }
