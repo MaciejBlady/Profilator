@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 namespace Profilator
 {
@@ -12,12 +11,19 @@ namespace Profilator
             if (_displayedText == null)
             {
                 _displayedText = GetComponent<Text>();
-            }          
+            }
         }
 
-        private void Update()
+        public override void SampleModule()
         {
-            _displayedText.text = Module.GetData().ToString();
+            ProfilatorDataRecord data = Module.GetData();
+
+            if (SaveSampledData)
+            {
+                data.WriteToFile("dunno");
+            }
+
+            _displayedText.text = data.ToString();
         }
     } 
 }
