@@ -1,35 +1,38 @@
 ﻿using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Profiling;
+using System.Collections.Generic;
 
 namespace Profilator
 {
     public class CPUModule : ProfilatorModule
     {
-        private int _processorCount = 0;
-        PerformanceCounter[] _counters;
-
+        Recorder _behaviourDataRecorder;
         protected void Awake()
         {
-            _processorCount = SystemInfo.processorCount;
-            _counters = new PerformanceCounter[_processorCount];
-
-            for (int i = 0; i < _counters.Length; i++)
+            List<string> names = new List<string>();
+            Sampler.GetNames(names);
+            foreach (var item in names)
             {
-                _counters[i] = new PerformanceCounter();
-                _counters[i].CategoryName = "Processor";
-                _counters[i].CounterName = "% Processor Time";
-                _counters[i].InstanceName = "_Total";
+                UnityEngine.Debug.Log(item);
             }
+
+            _behaviourDataRecorder = GetRecorder("BehaviourUpdate");
         }
 
         public override ProfilatorDataRecord GetData()
         {
-            ProfilatorDataRecord data = new ProfilatorDataRecord();           
-            for (int i = 0; i < _processorCount; i++)
-            {
-                data.AddData(string.Format("CPU {0}", i), _counters[i].NextValue().ToString());
-            }
+            ProfilatorDataRecord data = new ProfilatorDataRecord();
+            data.AddData("BehaviourUpdateElapsedTime", _behaviourDataRecorder.elapsedNanoseconds.ToString());
             return data;
+        }
+
+        private Recorder GetRecorder(string name)
+        {
+            
+            Recorder recorder = Recorder.Get(name);
+            recorder.enabled = true;
+            return recorder;
         }
     }
 }
