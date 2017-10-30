@@ -2,25 +2,29 @@
 
 namespace Profilator
 {
-    [RequireComponent(typeof(ProfilatorModule))]
+    //[RequireComponent(typeof(ProfilatorModule))]
     public abstract class ProfilatorModuleController : MonoBehaviour
     {
         private int _frameCounter = 0;
 
         [SerializeField]
+        private ProfilatorModule _module;
+
+        [Header("Controlls")]
+        [SerializeField]
         private int _dataSampleFrameInterval = 1;
         [SerializeField]
         private bool _saveSampledData = false;
+        
 
-        private ProfilatorModule _module;
         public ProfilatorModule Module
         {
             get
             {
-                if (!_module)
-                {
-                    _module = GetComponent<ProfilatorModule>();
-                }
+                //if (!_module)
+                //{
+                //    _module = GetComponent<ProfilatorModule>();
+                //}
                 return _module;
             }
         }
