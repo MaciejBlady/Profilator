@@ -5,20 +5,27 @@ using System.Collections.Generic;
 
 namespace Profilator
 {
+    [CreateAssetMenu(menuName = "ProfilatorModules/CPUModule")]
     public class CPUModule : ProfilatorModule
     {
         Recorder _behaviourDataRecorder;
-        protected void Awake()
-        {
-            List<string> names = new List<string>();
-            Sampler.GetNames(names);
-            foreach (var item in names)
-            {
-                UnityEngine.Debug.Log(item);
-            }
 
+        private void OnEnable()
+        {
             _behaviourDataRecorder = GetRecorder("BehaviourUpdate");
         }
+
+        //protected void Awake()
+        //{
+        //    List<string> names = new List<string>();
+        //    Sampler.GetNames(names);
+        //    foreach (var item in names)
+        //    {
+        //        UnityEngine.Debug.Log(item);
+        //    }
+
+        //    _behaviourDataRecorder = GetRecorder("BehaviourUpdate");
+        //}
 
         public override ProfilatorDataRecord GetData()
         {

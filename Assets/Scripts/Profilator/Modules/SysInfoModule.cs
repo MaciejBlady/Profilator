@@ -2,6 +2,7 @@
 
 namespace Profilator
 {
+    [CreateAssetMenu(menuName = "ProfilatorModules/SysInfoModule")]
     public class SysInfoModule : ProfilatorModule
     {
         public override ProfilatorDataRecord GetData()

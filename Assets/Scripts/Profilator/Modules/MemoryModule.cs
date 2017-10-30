@@ -5,6 +5,7 @@ using UnityEngine.Profiling;
 
 namespace Profilator
 {
+    [CreateAssetMenu(menuName = "ProfilatorModules/MemoryModule")]
     public class MemoryModule : ProfilatorModule
     {
         public override ProfilatorDataRecord GetData()
