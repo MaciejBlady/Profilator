@@ -16,14 +16,14 @@ namespace Profilator
 
         public override void SampleModule()
         {
-            ProfilatorDataRecord data = Module.GetData();
+            IProfilatorData data = Module.GetData();
 
-            if (SaveSampledData)
+            if (LogSampledData)
             {
-                data.WriteToFile("dunno");
+                ProfilatorCore.Instance.Log(data);
             }
 
-            _displayedText.text = data.ToString();
+            _displayedText.text = data.GetFormattedData();
         }
     } 
 }

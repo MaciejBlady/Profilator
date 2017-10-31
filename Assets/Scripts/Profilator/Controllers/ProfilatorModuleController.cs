@@ -2,7 +2,6 @@
 
 namespace Profilator
 {
-    //[RequireComponent(typeof(ProfilatorModule))]
     public abstract class ProfilatorModuleController : MonoBehaviour
     {
         private int _frameCounter = 0;
@@ -21,10 +20,6 @@ namespace Profilator
         {
             get
             {
-                //if (!_module)
-                //{
-                //    _module = GetComponent<ProfilatorModule>();
-                //}
                 return _module;
             }
         }
@@ -42,7 +37,7 @@ namespace Profilator
             }
         }
 
-        public bool SaveSampledData
+        public bool LogSampledData
         {
             get
             {
