@@ -5,9 +5,9 @@ namespace Profilator
     [CreateAssetMenu(menuName = "ProfilatorModules/SysInfoModule")]
     public class SysInfoModule : ProfilatorModule
     {
-        public override ProfilatorDataRecord GetData()
+        public override IProfilatorData GetData()
         {
-            ProfilatorDataRecord data = new ProfilatorDataRecord();
+            ProfilatorDataRecord data = new ProfilatorDataRecord(this);
             data.AddData("System", SystemInfo.operatingSystem);
             data.AddData("ProcessorCount",SystemInfo.processorCount.ToString());
             data.AddData("GraphicsMemory", SystemInfo.graphicsMemorySize.ToString());

@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Profiling;
-using System.Collections.Generic;
 
 namespace Profilator
 {
@@ -15,28 +13,15 @@ namespace Profilator
             _behaviourDataRecorder = GetRecorder("BehaviourUpdate");
         }
 
-        //protected void Awake()
-        //{
-        //    List<string> names = new List<string>();
-        //    Sampler.GetNames(names);
-        //    foreach (var item in names)
-        //    {
-        //        UnityEngine.Debug.Log(item);
-        //    }
-
-        //    _behaviourDataRecorder = GetRecorder("BehaviourUpdate");
-        //}
-
-        public override ProfilatorDataRecord GetData()
+        public override IProfilatorData GetData()
         {
-            ProfilatorDataRecord data = new ProfilatorDataRecord();
+            ProfilatorDataRecord data = new ProfilatorDataRecord(this);
             data.AddData("BehaviourUpdateElapsedTime", _behaviourDataRecorder.elapsedNanoseconds.ToString());
             return data;
         }
 
         private Recorder GetRecorder(string name)
-        {
-            
+        {          
             Recorder recorder = Recorder.Get(name);
             recorder.enabled = true;
             return recorder;

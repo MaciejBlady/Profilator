@@ -4,6 +4,6 @@ namespace Profilator
 {
     public abstract class ProfilatorModule : ScriptableObject
     {
-        public abstract ProfilatorDataRecord GetData();
+        public abstract IProfilatorData GetData();
     }
 }
