@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _module: {fileID: 11400000, guid: 747f1dbe4b64ae24abcbb8f65b39ca1c, type: 2}
   _dataSampleFrameInterval: 30
-  _saveSampledData: 0
+  _saveSampledData: 1
   _displayedText: {fileID: 299459515}
 --- !u!222 &1087265328
 CanvasRenderer:
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406a54e231d21764890e052edc93f254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _invokerEvents: []
+  _logger: {fileID: 11400000, guid: 9c280024b5607b447ab4d97d1d00bf0b, type: 2}
 --- !u!223 &1363290322
 Canvas:
   m_ObjectHideFlags: 0
@@ -2068,7 +2068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _module: {fileID: 11400000, guid: 7cb6142e4ee6a0f44a293b635624ee17, type: 2}
   _dataSampleFrameInterval: 1
-  _saveSampledData: 0
+  _saveSampledData: 1
   _displayedText: {fileID: 149103493}
 --- !u!1 &1956568155
 GameObject:
