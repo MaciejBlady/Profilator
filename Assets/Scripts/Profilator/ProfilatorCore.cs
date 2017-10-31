@@ -1,32 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Diagnostics;
+﻿using UnityEngine;
 
 namespace Profilator
 {
     public class ProfilatorCore : MonoBehaviour
     {
-        public ProfilatorModule[] _modules;
-        public ProfilatorConfig _config;
-        public IModuleBaseProvider _baseProvider;
-
-        private void Start()
+        private static ProfilatorCore _instance;
+        public static ProfilatorCore Instance
         {
-            FindModules();           
-        }
-
-        private void FindModules()
-        {
-            _modules = GetComponentsInChildren<ProfilatorModule>();
-        }
-
-        void Update()
-        {
-            foreach (var module in _modules)
+            get
             {
-                
-            }            
+                return _instance;
+            }
+        }
+
+        [SerializeField]
+        private ProfilatorLogger _logger;
+
+        private void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
+
+        public void Log(IProfilatorData data)
+        {
+            if (_logger != null)
+            {
+                _logger.Log(data);
+            }
         }
     }
 }
