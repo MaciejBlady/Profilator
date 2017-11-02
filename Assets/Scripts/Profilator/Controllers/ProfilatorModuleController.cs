@@ -6,21 +6,31 @@ namespace Profilator
     {
         private int _frameCounter = 0;
 
+        [Header("Scriptable objects")]
         [SerializeField]
         private ProfilatorModule _module;
+        [SerializeField]
+        private ProfilatorLogger _logger;
 
         [Header("Controlls")]
         [SerializeField]
         private int _dataSampleFrameInterval = 1;
         [SerializeField]
-        private bool _saveSampledData = false;
+        private bool _logSampledData = false;
         
-
         public ProfilatorModule Module
         {
             get
             {
                 return _module;
+            }
+        }
+
+        public ProfilatorLogger Logger
+        {
+            get
+            {
+                return _logger;
             }
         }
 
@@ -41,12 +51,12 @@ namespace Profilator
         {
             get
             {
-                return _saveSampledData;
+                return _logSampledData;
             }
 
             set
             {
-                _saveSampledData = value;
+                _logSampledData = value;
             }
         }
 
@@ -63,6 +73,16 @@ namespace Profilator
             }
         }
 
-        public abstract void SampleModule();
+        protected virtual void SampleModule()
+        {
+            IProfilatorData data = Module.GetData();
+            ProcessData(data);
+            if (LogSampledData)
+            {
+                Logger.Log(data);
+            }
+        }
+
+        public abstract void ProcessData(IProfilatorData data);
     } 
 }

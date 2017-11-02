@@ -1,10 +1,12 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Profilator
 {
     public class ProfilatorTextController : ProfilatorModuleController
     {
-        public Text _displayedText;
+        [SerializeField]
+        private Text _displayedText;
 
         private void Start()
         {
@@ -14,16 +16,12 @@ namespace Profilator
             }
         }
 
-        public override void SampleModule()
+        public override void ProcessData(IProfilatorData data)
         {
-            IProfilatorData data = Module.GetData();
-
-            if (LogSampledData)
+            if (_displayedText != null)
             {
-                ProfilatorCore.Instance.Log(data);
-            }
-
-            _displayedText.text = data.GetFormattedData();
+                _displayedText.text = data.GetFormattedData();
+            }        
         }
     } 
 }
