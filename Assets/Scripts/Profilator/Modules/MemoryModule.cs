@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.Diagnostics;
+﻿using UnityEngine;
 using UnityEngine.Profiling;
 
 namespace Profilator
@@ -14,12 +12,12 @@ namespace Profilator
             long totalReserved = Profiler.GetTotalReservedMemoryLong();
             long totalReservedUnused = Profiler.GetTotalUnusedReservedMemoryLong();
 
-            data.AddData("TotalReservedMemory", totalReserved.ToString());
-            data.AddData("TotalUnusedReservedMemory", totalReservedUnused.ToString());
-            data.AddData("ReservedMemoryUsage", (1.0 - ((double)totalReservedUnused / (double)totalReserved)).ToString());
-            data.AddData("MonoHeapSize", Profiler.GetMonoHeapSizeLong().ToString());
-            data.AddData("MonoUsedSize", Profiler.GetMonoUsedSizeLong().ToString());
-            data.AddData("TotalAllocatedMemory", Profiler.GetTotalAllocatedMemoryLong().ToString());
+            data.AddData("TotalReservedMemory[B]", totalReserved.ToString());
+            data.AddData("TotalUnusedReservedMemory[B]", totalReservedUnused.ToString());
+            data.AddData("ReservedMemoryUsage[B]", (1.0 - ((double)totalReservedUnused / (double)totalReserved)).ToString());
+            data.AddData("MonoHeapSize[B]", Profiler.GetMonoHeapSizeLong().ToString());
+            data.AddData("MonoUsedSize[B]", Profiler.GetMonoUsedSizeLong().ToString());
+            data.AddData("TotalAllocatedMemory[B]", Profiler.GetTotalAllocatedMemoryLong().ToString());
 
             return data;         
         }

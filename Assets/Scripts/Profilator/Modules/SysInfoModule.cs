@@ -10,8 +10,8 @@ namespace Profilator
             ProfilatorDataRecord data = new ProfilatorDataRecord(this);
             data.AddData("System", SystemInfo.operatingSystem);
             data.AddData("ProcessorCount",SystemInfo.processorCount.ToString());
-            data.AddData("GraphicsMemory", SystemInfo.graphicsMemorySize.ToString());
-            data.AddData("SystemMemory", SystemInfo.systemMemorySize.ToString());
+            data.AddData("GraphicsMemory[MB]", SystemInfo.graphicsMemorySize.ToString());
+            data.AddData("SystemMemory[MB]", SystemInfo.systemMemorySize.ToString());
             return data;
         }
     }
