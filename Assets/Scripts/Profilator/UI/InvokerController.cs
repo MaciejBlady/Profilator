@@ -1,28 +1,33 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
-using System.Collections;
 
 namespace Profilator
 {
     public class InvokerController : MonoBehaviour
     {
+        [System.Serializable]
+        private class InvokerAction
+        {
+            public Button.ButtonClickedEvent OnButtonClick;
+            public string ButtonLabel = "Button";
+        }
+
         [SerializeField]
         private GameObject _invokerButtonPrefab;
         [SerializeField]
         private GameObject _buttonParent;
         [SerializeField]
-        private Button.ButtonClickedEvent[] _buttonEvents;
+        private InvokerAction[] _buttonActions;
 
         private void Awake()
         {
-            foreach (var buttonEvent in _buttonEvents)
+            foreach (var buttonAction in _buttonActions)
             {
-                AddButton(buttonEvent);
+                AddButton(buttonAction);
             }
         }
 
-        public void AddButton(Button.ButtonClickedEvent buttonEvent)
+        private void AddButton(InvokerAction buttonEvent)
         {
             GameObject newButton = Instantiate<GameObject>(_invokerButtonPrefab);
             if (newButton != null)
@@ -31,8 +36,8 @@ namespace Profilator
                 InvokerButton invokerButton = newButton.GetComponent<InvokerButton>();
                 if (invokerButton != null)
                 {
-                    invokerButton.OnClick = buttonEvent;
-                    invokerButton.Label = buttonEvent.GetPersistentTarget(0).ToString();
+                    invokerButton.OnClick = buttonEvent.OnButtonClick;
+                    invokerButton.Label = buttonEvent.ButtonLabel;
                 }   
             }
         }

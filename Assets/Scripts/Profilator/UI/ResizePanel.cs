@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+//salvaged from the Unity UI samples
 public class ResizePanel : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     [SerializeField]
