@@ -32,7 +32,6 @@ namespace Profilator
                 {
                     size += s.Length * sizeof(char);
                 }
-                //Debug.LogFormat("Buffer bytes: {0}", size);
                 return size;
             }
         }

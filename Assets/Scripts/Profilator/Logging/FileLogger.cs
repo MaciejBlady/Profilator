@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using System.Diagnostics;
 using System.IO;
-
 
 namespace Profilator
 {
